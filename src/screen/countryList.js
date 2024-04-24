@@ -4,9 +4,8 @@ import {Text, View} from 'react-native';
 
 const CountryList = () => {
     return (
-        <Text>
-            
-        </Text>
+        <View style={{flex: 1, backgroundColor: 'pink'}}>
+        </View>
     );
 };
 
