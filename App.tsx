@@ -15,8 +15,7 @@ import {
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
-// import Home from "@screen/login.js"
-import Login from "./src/screen/login";
+import HomeScreen from "./src/index";
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -30,8 +29,7 @@ function App(): React.JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Login/>
-
+      <HomeScreen/>
     </SafeAreaView>
   );
 }

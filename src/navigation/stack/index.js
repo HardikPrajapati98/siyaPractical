@@ -1,16 +1,25 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Login from "@screen/login"
+import CountryList from "@screen/login"
+import CountryInfo from "@screen/login"
 
 const StackNavigator = () => {
     const Stack = createNativeStackNavigator();
 
     return (
-        <Stack.Navigator initialRouteName={'SplashScreen'}>
+        <Stack.Navigator initialRouteName={'login'}>
             <Stack.Screen
-                name="SplashScreen"
-                component={SplashScreen}
-                options={option}
+                name="login"
+                component={Login}
+            />
+            <Stack.Screen
+                name="countryList"
+                component={CountryList}
+            />
+            <Stack.Screen
+                name="countryInfo"
+                component={CountryInfo}
             />
         </Stack.Navigator>
     );
