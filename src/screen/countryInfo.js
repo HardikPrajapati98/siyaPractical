@@ -10,6 +10,11 @@ const CountryInfo = () => {
 
             <View style={countryInfoStyle.cardView}>
 
+                <Text style={countryInfoStyle.title}>Langugage</Text>
+                              <Text style={countryInfoStyle.title}>Langugage</Text>
+
+
+
             </View>
             
         </View>
