@@ -11,8 +11,7 @@ const CountryList = (props) => {
     const [countryList, setCountryList] = useState([])
     const dispatch = useDispatch()
     const skipRef = useRef({ value: 0 })
-        const limitRef = useRef({ value: 10 })
-
+    const limitRef = useRef({ value: 10 })
     const { country } = useSelector(state => state.countryStore)
     const endData = useRef({ value: '' }).current
 
@@ -60,10 +59,8 @@ const CountryList = (props) => {
     );
  
     const onEndReached = () => {
-        if (countryList.length >= 1 && endData.value === '') {
-            console.log("====");
-            pagination()
-       }
+        if (countryList.length >= 1 && endData.value === '') pagination()
+    
     }
 
 
