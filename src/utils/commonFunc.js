@@ -6,13 +6,13 @@ export const {
 
 const fontScale = PixelRatio.getFontScale();
 
-const getFontSize = size => size / fontScale;
+export const getFontSize = size => size / fontScale;
 
-const responsiveWidth = width => {
+export const responsiveWidth = width => {
     return (Dimensions.get('window').width * width) / SCREEN_WIDTH;
 };
 
-const responsiveHeight = height => {
+export const responsiveHeight = height => {
     return (Dimensions.get('window').height * height) / SCREEN_HEIGHT;
 };
 
