@@ -1,29 +1,41 @@
+import React, {memo} from 'react';
+import {Text, Image, TouchableOpacity, View} from 'react-native';
+import {countryList} from '../../styleSheet/countryList';
+import { useNavigation } from '@react-navigation/native'
 
-import React from 'react';
-
-import { Text, TouchableOpacity, View} from 'react-native';
-import { countryList } from '../../styleSheet/countryList';
 const CountryListItem = (props) => {
     const { item } = props
+         const navigation = useNavigation()
+
     
-    return <TouchableOpacity style={countryList.itemView}>
+    const navigate = () => {
+          navigation.navigate('countryInfo')
+     }
 
-
+    return <TouchableOpacity
+                onPress={navigate}
+          style={countryList.itemView}>
         <View style={countryList.listView}>
-            <Text style={countryList.title}>Name : <Text style={countryList.subTitle}>{ item.name.common}</Text> </Text>
-           <Text  style={countryList.title}>Region :<Text style={countryList.subTitle}>{item.region}</Text>  </Text>
+            <Text style={countryList.title}>Name : <Text style={countryList.subTitle}>{item.name.common}</Text> </Text>
+            <Text style={countryList.title}>Region : <Text style={countryList.subTitle}>{item.region}</Text> </Text>
         </View>
         <View>
 
         </View>
-                <View style={countryList.flagView}>
-
-            </View>
+        <View style={countryList.flagView}>
+            <Image
+                source={{uri: item.flags.png}}
+                style={{height: 50, width: '100%'}}
+            />
+        </View>
 
 
     </TouchableOpacity>
-    
+
 }
 
+function stopReRender(prevProps, nextProps) {
+    return prevProps === nextProps
+}
 
-export default CountryListItem
+export default memo(CountryListItem, stopReRender);

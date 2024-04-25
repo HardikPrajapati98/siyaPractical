@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
-
+import {getFontSize,responsiveWidth,responsiveHeight} from '../utils/commonFunc'
 
 export const loginStyles = StyleSheet.create({
-   
+
     container: {
         flex: 1,
         backgroundColor: '#000',
@@ -11,20 +11,21 @@ export const loginStyles = StyleSheet.create({
         gap:30
     },
     inputBox: {
-        // flex: 1,
         gap:20
     },
     headerText: {
-        color:"#fff"
+        color:"#fff",
+        fontSize: getFontSize(25)
     },
     commonGap: {
         gap:10
     },
     inputText: {
-         color:"#fff"
+         color:"#fff",
+        fontSize: getFontSize(15)
     },
 
-    inputView: {    
+    inputView: {
         height: 50,
         width: '100%',
         borderRadius: 10,
@@ -32,8 +33,9 @@ export const loginStyles = StyleSheet.create({
         borderColor: '#fff',
         color: "#fff",
         paddingHorizontal: 15,
-    
-    
+        fontSize:getFontSize(13)
+
+
     },
     submitBtn: {
         height: 50,
@@ -43,7 +45,8 @@ export const loginStyles = StyleSheet.create({
     },
     submitText: {
         color: '#000',
-        fontSize: 17,
+        // fontSize: 17,
+        fontSize: getFontSize(20),
         fontWeight:"600"
     }
 

@@ -1,10 +1,18 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import { Text, View } from 'react-native';
+import { countryInfoStyle } from '../styleSheet/infoStyle';
+import { loginStyles } from '../styleSheet/login';
+
+
 const CountryInfo = () => {
     return (
-        <Text>
+        <View style={loginStyles.container}>
 
-        </Text>
+            <View style={countryInfoStyle.cardView}>
+
+            </View>
+            
+        </View>
     );
 };
 
