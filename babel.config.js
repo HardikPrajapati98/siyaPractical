@@ -14,8 +14,7 @@ module.exports = {
         },
       },
     ],
+    ["@babel/plugin-transform-private-methods", { "loose": true }],
     'react-native-reanimated/plugin',
-
-
   ],
 };
