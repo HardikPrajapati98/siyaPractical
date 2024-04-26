@@ -9,7 +9,8 @@ export const commonStyles = StyleSheet.create({
         paddingHorizontal: 20
     },
     paddingVertical30: {
-        paddingVertical: 30
+        paddingVertical: 30,
+
     },
     absoluteView:{
         ...StyleSheet.absoluteFillObject,

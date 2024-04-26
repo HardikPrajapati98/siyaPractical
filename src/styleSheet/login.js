@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native";
-import {getFontSize, responsiveWidth, responsiveHeight} from '../utils/commonFunc'
+import {getFontSize, } from '../utils/commonFunc'
 
 export const loginStyles = StyleSheet.create({
 

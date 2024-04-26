@@ -87,6 +87,7 @@ const CountryList = (props) => {
         <View style={[commonStyles.paddingHorizontal20, commonStyles.paddingVertical30, {
             flex: 1,
             backgroundColor: '#000',
+            paddingBottom: 0
         }]}>
             <LodingIndicator ref={loadingRef}/>
             <FlatList
