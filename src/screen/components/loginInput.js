@@ -9,13 +9,19 @@ const LoginInputBox = forwardRef((props, ref) => {
     const hidePassword = useRef({value: true}).current
 
     useImperativeHandle(ref, () => (({
-        getProps: () => loginProp
-
+        getProps: propsSend
     })))
 
+    const propsSend = () => {
+        return loginProp
+    }
+
+
     const updateState = (e, type) => {
+        console.log("loginProp",e.value)
+
         setLoginProp(preState => {
-            return {...preState, [type]: e}
+            return {...preState, [type]: e.value}
         })
     }
 
@@ -38,7 +44,7 @@ const LoginInputBox = forwardRef((props, ref) => {
                 value={loginProp?.email || ''}
                 onChange={(e) => updateState(e, 'email')}
                 placeholderTextColor={"#fff"}
-
+                keyboardType={"email-address"}
             />
             <Text style={loginStyles.inputText}> Password</Text>
             <View style={{flexDirection: 'row'}}>
