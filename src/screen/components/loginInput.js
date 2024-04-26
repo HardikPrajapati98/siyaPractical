@@ -18,10 +18,8 @@ const LoginInputBox = forwardRef((props, ref) => {
 
 
     const updateState = (e, type) => {
-        console.log("loginProp",e.value)
-
         setLoginProp(preState => {
-            return {...preState, [type]: e.value}
+            return {...preState, [type]: e}
         })
     }
 
@@ -42,7 +40,7 @@ const LoginInputBox = forwardRef((props, ref) => {
                 placeholder="Enter Email"
                 style={loginStyles.inputView}
                 value={loginProp?.email || ''}
-                onChange={(e) => updateState(e, 'email')}
+                onChangeText={(e) => updateState(e, 'email')}
                 placeholderTextColor={"#fff"}
                 keyboardType={"email-address"}
             />
@@ -53,7 +51,7 @@ const LoginInputBox = forwardRef((props, ref) => {
                     ref={passwordRef}
                     style={loginStyles.inputView}
                     value={loginProp?.password || ''}
-                    onChange={(e) => updateState(e, 'password')}
+                    onChangeText={(e) => updateState(e, 'password')}
                     secureTextEntry={true}
                     placeholderTextColor={"#fff"}
                 />

@@ -12,19 +12,15 @@ const Login = () => {
 
     const submitData = async () => {
         const getData = await inputRef.current.getProps()
-        console.log("        const \n",getData)
         if (getData?.email && getData.password) {
-            console.log("getData?.email",getData?.email)
-            if (!regex.validateEmail(getData?.email)) {
-                return Alert.alert("", "Please check email is not valid.", [
-                    {
-                        text: "OK", onPress: () => {
-                        }
-                    },
-                ]);
-            }
+            if (!regex.validateEmail(getData?.email)) return showAlert("Please check email is not valid.")
+            if (getData?.email.length < 8) return showAlert("Password length should be 8 character.")
             navigation.push('countryList')
-        } else Alert.alert("", "All fields are required.", [
+        } else showAlert("All fields are required.")
+    }
+
+    const showAlert = (text) => {
+        Alert.alert("", text, [
             {
                 text: "OK", onPress: () => {
                 }
@@ -33,18 +29,18 @@ const Login = () => {
     }
 
     return (
-        <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()} accessible={false}>
-        <View style={loginStyles.container}>
-            <LoginInputBox ref={inputRef}/>
-            <TouchableOpacity
-                onPress={submitData}
-                style={[loginStyles.submitBtn, commonStyles.center]}>
-                <Text style={loginStyles.submitText}>
-                    Login
-                </Text>
-            </TouchableOpacity>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} accessible={false}>
+            <View style={loginStyles.container}>
+                <LoginInputBox ref={inputRef}/>
+                <TouchableOpacity
+                    onPress={submitData}
+                    style={[loginStyles.submitBtn, commonStyles.center]}>
+                    <Text style={loginStyles.submitText}>
+                        Login
+                    </Text>
+                </TouchableOpacity>
 
-        </View>
+            </View>
         </TouchableWithoutFeedback>
     );
 };
