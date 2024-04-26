@@ -16,11 +16,13 @@ const CountryList = (props) => {
     const {country} = useSelector(state => state.countryStore)
     const endData = useRef({value: ''}).current
     const loadingRef = useRef(null)
+    const [disable, setDisable] = useState(false)
 
     useEffect(() => {
         props.navigation.setOptions({
             headerRight: () => (
                 <TouchableOpacity
+                    disable={disable}
                     onPress={fetchData}>
                     <Text>Fetch Data</Text>
                 </TouchableOpacity>
@@ -36,23 +38,24 @@ const CountryList = (props) => {
 
     const goBack = () => props.navigation.goBack()
 
-    const fetchData = async () => {
-        if (countryList.length >= 1) return
-        loadingRef.current.animate(true)
-        apiServices.getCountry()
-            .then((countryResponse) => {
-                dispatch(storeCountry(countryResponse))
-            })
-            .catch((error) => {
-            })
-        // const response = await fetch("https://restcountries.com/v3.1/all");
-        // const countryResponse = await response.json();
-        // dispatch(storeCountry(countryResponse))
-    }
-
     useEffect(() => {
         pagination()
     }, [country])
+
+    const fetchData = async () => {
+        if (countryList.length >= 1) return
+        loadingRef.current.animate(true)
+        setDisable(true)
+        apiServices.getCountry()
+            .then((countryResponse) => {
+                dispatch(storeCountry(countryResponse))
+                setDisable(false)
+            })
+            .catch((error) => {
+                loadingRef.current.animate(false)
+                setDisable(false)
+            })
+    }
 
     const pagination = () => {
         if (country.length === 0) return
@@ -77,7 +80,8 @@ const CountryList = (props) => {
     );
 
     const onEndReached = () => {
-        if (countryList.length >= 1 && endData.value === '') pagination()}
+        if (countryList.length >= 1 && endData.value === '') pagination()
+    }
 
     return (
         <View style={[commonStyles.paddingHorizontal20, commonStyles.paddingVertical30, {

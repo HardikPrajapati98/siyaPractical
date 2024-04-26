@@ -1,9 +1,9 @@
 import {apiEndPoint} from "./apiEndPoint";
 
 export const apiServices = {
-    getCountry : () => {
+    getCountry: () => {
         return new Promise(async (resolve, reject) => {
-            await fetch(apiEndPoint.getCountry).then((response) =>{
+            await fetch(apiEndPoint.getCountry).then((response) => {
                 resolve(response.json())
             }).catch((error) => {
                 reject(error)
