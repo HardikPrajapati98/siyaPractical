@@ -1,10 +1,12 @@
 import React, {forwardRef, useImperativeHandle, useRef, useState} from "react"
-import {Image, StyleSheet, Text, TextInput, View} from 'react-native'
+import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native'
 import {loginStyles} from "../../styleSheet/login";
+import {commonStyles} from "../../styleSheet/commonStyle";
 
 const LoginInputBox = forwardRef((props, ref) => {
     const [loginProp, setLoginProp] = useState({})
     const passwordRef = useRef(null)
+    const hidePassword = useRef({value: true}).current
 
     useImperativeHandle(ref, () => (({
         getProps: () => loginProp
@@ -19,13 +21,14 @@ const LoginInputBox = forwardRef((props, ref) => {
 
     const updateSecureTextEntries = () => {
         passwordRef.current.setNativeProps({
-            secureTextEntry: true
+            secureTextEntry: !hidePassword.value
         })
+        hidePassword.value = !hidePassword.value
     }
 
     return <View style={loginStyles.inputBox}>
         <Text style={loginStyles.headerText}>
-            Log in To Scale
+            Log in To App
         </Text>
         <View style={loginStyles.commonGap}>
             <Text style={loginStyles.inputText}> Email</Text>
@@ -48,13 +51,12 @@ const LoginInputBox = forwardRef((props, ref) => {
                     secureTextEntry={true}
                     placeholderTextColor={"#fff"}
                 />
-                <View
-                    style={{...StyleSheet.absoluteFillObject, right: 0, height: 50, width: 25, backgroundColor: 'red'}}>
+                <TouchableOpacity onPress={updateSecureTextEntries} style={loginStyles.eyeIcon}>
                     <Image
                         source={{uri: 'https://cdn.iconscout.com/icon/free/png-256/free-eye-504-450305.png'}}
                         style={{height: 25, width: 25}}
                     />
-                </View>
+                </TouchableOpacity>
 
 
             </View>

@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native";
-
+import{getFontSize} from "../utils/commonFunc"
 export const countryList = StyleSheet.create({
     itemView: {
         height: 150,
@@ -8,15 +8,16 @@ export const countryList = StyleSheet.create({
         borderRadius: 15,
         padding: 10,
         paddingHorizontal: 20,
+        paddingVertical:30,
         gap: 5,
         flexDirection: "row"
     },
     title: {
         fontWeight: "600",
-        fontSize: 16
+        fontSize : getFontSize(17)
     },
     subTitle: {
-        fontSize: 13
+        fontSize:getFontSize(13)
     },
     listView: {
         flex: 0.8,
