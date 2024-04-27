@@ -4,23 +4,25 @@ import {countryList} from '../../styleSheet/countryList';
 import { useNavigation } from '@react-navigation/native'
 
 const CountryListItem = (props) => {
-    const { item } = props
-         const navigation = useNavigation()
+    const { item ,index} = props
+    const navigation = useNavigation()
 
-    
+
     const navigate = () => {
-          navigation.navigate('countryInfo')
-     }
+        let obj = {
+            capital: item.capital?.[0],
+            timezones:item.timezones,
+            languages:item.languages
+        }
+        navigation.navigate('countryInfo',{obj:obj})
+    }
 
     return <TouchableOpacity
-                onPress={navigate}
-          style={countryList.itemView}>
+        onPress={navigate}
+        style={countryList.itemView}>
         <View style={countryList.listView}>
             <Text style={countryList.title}>Name : <Text style={countryList.subTitle}>{item.name.common}</Text> </Text>
             <Text style={countryList.title}>Region : <Text style={countryList.subTitle}>{item.region}</Text> </Text>
-        </View>
-        <View>
-
         </View>
         <View style={countryList.flagView}>
             <Image
@@ -28,7 +30,6 @@ const CountryListItem = (props) => {
                 style={{height: 50, width: '100%'}}
             />
         </View>
-
 
     </TouchableOpacity>
 

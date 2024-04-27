@@ -9,11 +9,19 @@ export const countryInfoStyle = StyleSheet.create({
         borderRadius: 15,
         backgroundColor: '#fff',
         padding: 10,
-        paddingHorizontal:20
+        paddingHorizontal:20,
+        gap:10
     },
     title: {
         fontSize:getFontSize(15)
+    },
+    timeZones:{
+        height:25,
+        backgroundColor: '#d2cece',
+        paddingHorizontal:10,
+        borderRadius: 5
     }
 
 
-})    
+
+})

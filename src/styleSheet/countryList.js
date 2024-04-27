@@ -14,10 +14,12 @@ export const countryList = StyleSheet.create({
     },
     title: {
         fontWeight: "600",
-        fontSize : getFontSize(17)
+        fontSize: getFontSize(17),
+        color:'#000'
     },
     subTitle: {
-        fontSize:getFontSize(13)
+        fontSize: getFontSize(13),
+         color:'#808080'
     },
     listView: {
         flex: 0.8,

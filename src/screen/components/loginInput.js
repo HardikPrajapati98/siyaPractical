@@ -1,15 +1,22 @@
 import React, {forwardRef, useImperativeHandle, useRef, useState} from "react"
-import {Image, StyleSheet, Text, TextInput, View} from 'react-native'
+import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native'
 import {loginStyles} from "../../styleSheet/login";
 
 const LoginInputBox = forwardRef((props, ref) => {
     const [loginProp, setLoginProp] = useState({})
     const passwordRef = useRef(null)
+    const hidePassword = useRef({value: true}).current
 
     useImperativeHandle(ref, () => (({
-        getProps: () => loginProp
-
+        getProps: propsSend
     })))
+
+
+
+    const propsSend = () => {
+        return loginProp
+    }
+
 
     const updateState = (e, type) => {
         setLoginProp(preState => {
@@ -19,8 +26,9 @@ const LoginInputBox = forwardRef((props, ref) => {
 
     const updateSecureTextEntries = () => {
         passwordRef.current.setNativeProps({
-            secureTextEntry: true
+            secureTextEntry: !hidePassword.value
         })
+        hidePassword.value = !hidePassword.value
     }
 
     return <View style={loginStyles.inputBox}>
@@ -33,9 +41,9 @@ const LoginInputBox = forwardRef((props, ref) => {
                 placeholder="Enter Email"
                 style={loginStyles.inputView}
                 value={loginProp?.email || ''}
-                onChange={(e) => updateState(e, 'email')}
+                onChangeText={(e) => updateState(e, 'email')}
                 placeholderTextColor={"#fff"}
-
+                keyboardType={"email-address"}
             />
             <Text style={loginStyles.inputText}> Password</Text>
             <View style={{flexDirection: 'row'}}>
@@ -44,17 +52,16 @@ const LoginInputBox = forwardRef((props, ref) => {
                     ref={passwordRef}
                     style={loginStyles.inputView}
                     value={loginProp?.password || ''}
-                    onChange={(e) => updateState(e, 'password')}
+                    onChangeText={(e) => updateState(e, 'password')}
                     secureTextEntry={true}
                     placeholderTextColor={"#fff"}
                 />
-                <View
-                    style={{...StyleSheet.absoluteFillObject, right: 0, height: 50, width: 25, backgroundColor: 'red'}}>
+                <TouchableOpacity onPress={updateSecureTextEntries} style={loginStyles.eyeIcon}>
                     <Image
                         source={{uri: 'https://cdn.iconscout.com/icon/free/png-256/free-eye-504-450305.png'}}
                         style={{height: 25, width: 25}}
                     />
-                </View>
+                </TouchableOpacity>
 
 
             </View>
