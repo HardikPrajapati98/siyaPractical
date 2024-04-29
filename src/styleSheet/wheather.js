@@ -16,7 +16,9 @@ export const wheatherStyles = StyleSheet.create({
         fontWeight: "700",
     },
     currentLoc: {
-        height: 35,
+        maxHeight: 50,
+        paddingVertical: 10,
+        gap:5,
         width: '100%',
         backgroundColor: 'white',
         borderRadius: 10,
@@ -26,7 +28,7 @@ export const wheatherStyles = StyleSheet.create({
     currentLocText: {
         fontWeight: 'bold',
         fontSize: getFontSize(17),
-        color: 'red'
+        color: '#EF455E'
     },
     inputBox: {
         height: 50,
@@ -72,6 +74,7 @@ export const wheatherStyles = StyleSheet.create({
     subCommonText: {
         fontSize: getFontSize(15),
     },
+
     row: {flexDirection: 'row', gap: 10},
     box: {
         height: 100,

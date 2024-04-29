@@ -3,7 +3,6 @@ import {Linking, Platform, Text, TextInput, TouchableOpacity, View} from "react-
 import {wheatherStyles} from "../../styleSheet/wheather"
 import Geolocation from "@react-native-community/geolocation";
 
-
 const LocationSearch = (props) => {
     const {getWeatherDetail, loader} = props
 
@@ -21,7 +20,10 @@ const LocationSearch = (props) => {
 
     return <TouchableOpacity disabled={loader} onPress={getCurretntLocation} style={wheatherStyles.currentLoc}>
         <Text style={wheatherStyles.currentLocText}>
-            Use Current Location
+            Current Location
+        </Text>
+        <Text>
+            Using GPS
         </Text>
 
     </TouchableOpacity>
