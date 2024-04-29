@@ -1,47 +1,14 @@
 import React, {useEffect, useRef, useState} from "react"
 import {View, Text, Image, FlatList, ScrollView, TouchableOpacity} from "react-native"
 import {wheatherStyles} from "../../styleSheet/wheather";
+import DayForeCast from "./dayForecast";
 
 const WheatherDetail = (props) => {
     const {close, weather} = props
     const [data, setData] = useState(weather)
-    const flatRef = useRef(null)
 
-    const currentTime = new Date().toLocaleDateString('en-us', {
-        hour12: true,
-        hour: 'numeric',
-    }).split(',')?.[1]
 
-    const date = (time, index) => {
-        let dateTime = new Date(time).toLocaleDateString('en-us', {
-            hour12: true,
-            hour: 'numeric',
-        }).split(',')?.[1]
-        if (currentTime === dateTime) {
-            scrollToIndex(index)
-            return 'Now'
-        } else return dateTime
-    }
 
-    const scrollToIndex = (index) => {
-        setTimeout(() => {
-            flatRef.current.scrollToIndex({
-                index: index,
-                animated: true
-            })
-        }, 500)
-    }
-
-    const renderItem = ({item, index}) => {
-        return <View style={[wheatherStyles.center, wheatherStyles.pad]}>
-            <Text style={wheatherStyles.commonText}>{date(item.time, index)}</Text>
-            <Image
-                style={{height: 40, width: 40}}
-                source={{uri: `https:${item.condition.icon}`}}
-            />
-            <Text style={wheatherStyles.subCommonText}>{item.temp_c}°</Text>
-        </View>
-    }
 
     return <ScrollView style={{backgroundColor: '#b9e2f5'}}>
         <View style={wheatherStyles.container}>
@@ -85,16 +52,13 @@ const WheatherDetail = (props) => {
             </View>
             {
                 data.forecast?.forecastday.map((item) => {
+                    const flatRef = useRef(null)
+
                     return <View style={[wheatherStyles.dayWiseBox, {gap: 10, borderColor: 'white'}]}>
                         <Text style={wheatherStyles.commonText}> Date: {item.date}</Text>
                         <View style={wheatherStyles.dayWiseBox}>
-                            <FlatList
-                                ref={flatRef}
-                                horizontal
-                                data={item.hour}
-                                renderItem={renderItem}
-                                contentContainerStyle={{gap: 15}}
-                            />
+                            <DayForeCast data={item.hour}/>
+
                         </View>
                         <View style={{flexDirection: 'row', gap: 10}}>
                             <View style={wheatherStyles.temp}>
