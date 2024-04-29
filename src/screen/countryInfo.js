@@ -7,14 +7,14 @@ import {commonStyles} from "../styleSheet/commonStyle";
 
 const CountryInfo = (props) => {
     const {obj} = props.route.params
-    console.log("===",obj)
+    
     const language = useMemo(() => {
         return Object.values(obj.languages || {})?.join(',')
     }, [])
 
     const renderItem = useCallback(({item}) => {
         return <View style={[countryInfoStyle.timeZones,commonStyles.center]}>
-            <Text style={countryInfoStyle.title}>{item}</Text>
+               <Text style={countryInfoStyle.title}>{item}</Text>
         </View>
     }, [])
 

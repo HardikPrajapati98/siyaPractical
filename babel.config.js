@@ -10,7 +10,7 @@ module.exports = {
           '@store': './src/store',
           '@navigation': './src/navigation',
           '@network':'./src/network',
-          '@utils':'./src/utils',
+          '@styles':'./src/styleSheet',
           'react-native': './node_modules/react-native',
           react: './node_modules/react',
         },

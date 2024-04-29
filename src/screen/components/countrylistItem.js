@@ -4,7 +4,7 @@ import {countryList} from '../../styleSheet/countryList';
 import { useNavigation } from '@react-navigation/native'
 
 const CountryListItem = (props) => {
-    const { item } = props
+    const { item ,index} = props
     const navigation = useNavigation()
 
 

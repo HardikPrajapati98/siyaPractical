@@ -18,8 +18,8 @@ const CountryList = (props) => {
     const loadingRef = useRef(null)
     const [disable, setDisable] = useState(false)
 
-    useEffect(() => {
-        props.navigation.setOptions({
+  
+ props.navigation.setOptions({
             headerRight: () => (
                 <TouchableOpacity
                     disable={disable}
@@ -34,22 +34,19 @@ const CountryList = (props) => {
                 </TouchableOpacity>
             ),
         })
-    }, []);
-
     const goBack = () => props.navigation.goBack()
 
     useEffect(() => {
         pagination()
     }, [country])
 
-    const fetchData = async () => {
-        if (countryList.length >= 1) return
+    const fetchData = () => {
+        if (country.length >= 1) return
         loadingRef.current.animate(true)
         setDisable(true)
         apiServices.getCountry()
             .then((countryResponse) => {
                 dispatch(storeCountry(countryResponse))
-                setDisable(false)
             })
             .catch((error) => {
                 loadingRef.current.animate(false)
@@ -71,7 +68,7 @@ const CountryList = (props) => {
         })
     }
 
-    const renderItem = useCallback(({item, index}) => <CountryListItem item={item}/>, [])
+    const renderItem = useCallback(({ item, index }) => <CountryListItem item={item} index={index} />, [])
 
     const keyExtractor = useCallback((item, index) => index.toString(), [])
 

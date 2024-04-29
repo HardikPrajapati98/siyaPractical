@@ -14,7 +14,7 @@ const Login = () => {
         const getData = await inputRef.current.getProps()
         if (getData?.email && getData.password) {
             if (!regex.validateEmail(getData?.email)) return showAlert("Please check email is not valid.")
-            if (getData?.email.length < 8) return showAlert("Password length should be 8 character.")
+            if (getData?.password.length < 8) return showAlert("Password length should be 8 character.")
             navigation.push('countryList')
         } else showAlert("All fields are required.")
     }

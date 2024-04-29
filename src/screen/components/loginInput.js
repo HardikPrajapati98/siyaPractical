@@ -1,7 +1,6 @@
 import React, {forwardRef, useImperativeHandle, useRef, useState} from "react"
 import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native'
 import {loginStyles} from "../../styleSheet/login";
-import {commonStyles} from "../../styleSheet/commonStyle";
 
 const LoginInputBox = forwardRef((props, ref) => {
     const [loginProp, setLoginProp] = useState({})
@@ -11,6 +10,8 @@ const LoginInputBox = forwardRef((props, ref) => {
     useImperativeHandle(ref, () => (({
         getProps: propsSend
     })))
+
+
 
     const propsSend = () => {
         return loginProp
