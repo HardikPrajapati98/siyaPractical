@@ -1,26 +1,30 @@
 import React from "react"
-import { Text, TextInput, TouchableOpacity, View } from "react-native"
-import { wheatherStyles } from "../../styleSheet/wheather"
-import { loginStyles } from "../../styleSheet/login"
+import {Linking, Platform, Text, TextInput, TouchableOpacity, View} from "react-native"
+import {wheatherStyles} from "../../styleSheet/wheather"
+import Geolocation from "@react-native-community/geolocation";
 
 
 const LocationSearch = (props) => {
-  const {getWheatherDetail} = props
+    const {getWeatherDetail, loader} = props
 
+    const getCurretntLocation = () => {
+        Geolocation.getCurrentPosition(info => {
+            getWeatherDetail(info.coords)
+        }, () => {
+            if (Platform.OS === 'ios') {
+                Linking.openURL('app-settings:');
+            } else {
+                Linking.openSettings();
+            }
+        })
+    }
 
-  const getCurretntLocation = () => {
-      Geolocation.getCurrentPosition(info => {
-            getWheatherDetail(info.coords)
-      });
-  }
-  
+    return <TouchableOpacity disabled={loader} onPress={getCurretntLocation} style={wheatherStyles.currentLoc}>
+        <Text style={wheatherStyles.currentLocText}>
+            Use Current Location
+        </Text>
 
-    return <TouchableOpacity  onPress={getCurretntLocation} style={wheatherStyles.currentLoc}>        
-         <Text style={wheatherStyles.currentLocText}>
-          Use Current Location
-           </Text>
-                    
-           </TouchableOpacity>
+    </TouchableOpacity>
 }
 
 

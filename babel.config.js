@@ -11,6 +11,7 @@ module.exports = {
           '@navigation': './src/navigation',
           '@network':'./src/network',
           '@styles':'./src/styleSheet',
+          '@utils':'./src/utils',
           'react-native': './node_modules/react-native',
           react: './node_modules/react',
         },

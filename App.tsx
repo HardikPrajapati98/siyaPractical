@@ -17,8 +17,6 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 import HomeScreen from "./src/index";
-import { Provider } from 'react-redux';
-import store from './src/store';
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -30,7 +28,6 @@ function App(): React.JSX.Element {
     LogBox.ignoreAllLogs()
   },[])
   return (
-    <Provider store={store}>
        <SafeAreaView style={backgroundStyle}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
@@ -38,7 +35,6 @@ function App(): React.JSX.Element {
       />
       <HomeScreen/>
     </SafeAreaView>
-     </Provider>
   );
 }
 

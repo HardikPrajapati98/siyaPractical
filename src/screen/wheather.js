@@ -1,59 +1,62 @@
-import React, { useEffect, useState } from "react"
-import { View,Text, ScrollView, Modal } from "react-native"
-import { wheatherStyles } from "../styleSheet/wheather"
+import React, {useEffect, useState} from "react"
+import {View, Text, ScrollView, StyleSheet, Modal, ActivityIndicator, Alert} from "react-native"
+import {wheatherStyles} from "../styleSheet/wheather"
 import LocationSearch from "./components/locationSearch"
-import Geolocation from '@react-native-community/geolocation';
 import {apiServices} from "@network/getServices"
 import WheatherDetail from "./components/wheatherDetail";
 import CityList from "./components/cityList";
 
-
 const Wheather = () => {
-    const [openMdal, setOpenModal] = useState(false)
-    const [wheatherData,setWheatherData] = useState(null)
-    
+    const [openModal, setOpenModal] = useState(false)
+    const [weather, setWeatherData] = useState(null)
+    const [loader, setLoader] = useState(false)
 
-  
-    
-
-    const getWheatherDetail = (data) => {
-        let payload = {
-            lat: data.latitude,
-            lon:data.longitude
-        }
-         apiServices.getWheatherForcast(payload)
-             .then((countryResponse) => {
-                 setWheatherData(countryResponse)
+    const showAlert = (text) => {
+        Alert.alert("", text, [
+            {
+                text: "OK", onPress: () => {
+                }
+            },
+        ]);
+    }
+    const getWeatherDetail = (data) => {
+        setLoader(true)
+        apiServices.getWheatherForcast(`${data.latitude},${data.longitude}`)
+            .then((countryResponse) => {
+                setWeatherData(countryResponse)
                 setOpenModal(true)
+                setLoader(false)
             })
-             .catch((error) => {
-
+            .catch((error) => {
+                setLoader(false)
+                showAlert("Something went wrong")
             })
     }
-    
+    const close = () => setOpenModal(prevState => !prevState)
+
 
     return <View style={wheatherStyles.container}>
-        <Text style={wheatherStyles.title}> Wheather</Text>
-        <LocationSearch />
-        <ScrollView
-        contentContainerStyle={{gap:10}}
-        > 
-            <CityList getWheatherDetail={getWheatherDetail} />
-            
+        <Text style={wheatherStyles.title}> Weather</Text>
+        <LocationSearch loader={loader} getWeatherDetail={getWeatherDetail}/>
+        <ScrollView contentContainerStyle={{gap: 10}}>
+            <CityList  loader={loader} getWeatherDetail={getWeatherDetail}/>
         </ScrollView>
         <Modal
-         animationType="slide"
-        visible={openMdal}
-        onRequestClose={() => {
-          setOpenModal(!openMdal);
-            }}>
-                        <WheatherDetail   getWheatherDetail={getWheatherDetail}/>
-
-            
+            animationType="slide"
+            visible={openModal}
+            onRequestClose={close}
+        >
+            <WheatherDetail
+                close={close}
+                weather={weather}
+                getWeatherDetail={getWeatherDetail}
+                          />
         </Modal>
+        {loader && <View
+            style={[wheatherStyles.center, {...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(58,58,58,0.8)'}]}>
+            <ActivityIndicator color={'#b9e2f5'} size={"small"}/>
+        </View>}
 
-    
-        
     </View>
 }
 

@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native"
-import { getFontSize } from "../utils/commonFunc"
+import {StyleSheet} from "react-native"
+import {getFontSize} from "../utils/commonFunc"
 
 export const wheatherStyles = StyleSheet.create({
 
@@ -7,9 +7,9 @@ export const wheatherStyles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 20,
         backgroundColor: '#b9e2f5',
-        paddingTop: 20,
-        gap:15
-    
+        paddingTop: 50,
+        paddingBottom:20,
+        gap: 15
     },
     title: {
         fontSize: getFontSize(30),
@@ -19,18 +19,16 @@ export const wheatherStyles = StyleSheet.create({
         height: 35,
         width: '100%',
         backgroundColor: 'white',
-        borderWidth: 1,
         borderRadius: 10,
         alignItems: 'center',
-        justifyContent:'center'
-        
+        justifyContent: 'center'
     },
     currentLocText: {
         fontWeight: 'bold',
         fontSize: getFontSize(17),
-       color:'red'
+        color: 'red'
     },
-       inputBox: {
+    inputBox: {
         height: 50,
         width: '100%',
         borderRadius: 10,
@@ -43,30 +41,74 @@ export const wheatherStyles = StyleSheet.create({
 
     },
     alignCenter: {
-           alignItems:"center"
-       },
-       
-    mainTitle: {
-         fontSize: getFontSize(30),
-        fontWeight: "700",
-        color:'#000'
+        alignItems: "center",
+        gap: 10,
+
     },
+    pad: {
+        paddingVertical: 10,
+        paddingHorizontal: 5
+    },
+    center: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 10,
+    },
+    mainTitle: {
+        fontSize: getFontSize(30),
+        fontWeight: "700",
+        color: '#000'
+    },
+    subTitle: {
+        fontSize: getFontSize(20),
+        fontWeight: "500",
+        color: '#000'
+    },
+    commonText: {
+        fontSize: getFontSize(16),
+        fontWeight: "500",
+        color: '#000'
+    },
+    subCommonText: {
+        fontSize: getFontSize(15),
+    },
+    row: {flexDirection: 'row', gap: 10},
     box: {
-        flex: 1,
         height: 100,
-        borderWidth: 1,
         borderRadius: 10,
         width: '100%',
-        alignItems: "center",
-        justifyContent:'center'
+        backgroundColor: 'white',
+    },
+    dayWiseBox: {
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 10,
+        backgroundColor: 'white',
+        borderColor: "#b9e2f5"
     },
     cityBox: {
         height: 150,
-        borderWidth: 1,
         borderRadius: 20,
         width: '100%',
         alignItems: 'center',
-        justifyContent:'center'
+        justifyContent: 'center',
+        backgroundColor: 'white',
+        borderColor: '#b9e2f5',
+        borderWidth: 1
+    },
+    temp: {
+        // height: 50,
+        width: '100%',
+        flex: 1,
+        maxHeight: 100,
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 10,
+        borderRadius: 10,
+        borderColor: "#b9e2f5",
+        borderWidth: 1,
+        padding: 10
     }
+
 
 })
